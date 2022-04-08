@@ -16,6 +16,22 @@ export class UserService {
         return this.userRepository.find();
     }
 
+    create(data): Promise<User> {
+        return this.userRepository.save(data);
+    }
 
+    findOne(condition): Promise<User> {
+        return this.userRepository.findOne(condition)
+    }
+
+    async update(id, data): Promise<User> {
+        await this.userRepository.update(id, data)
+        return this.findOne({id})
+    }
+
+    async delete(id): Promise<any> {
+        return this.userRepository.delete(id);
+
+    }
 
 }
